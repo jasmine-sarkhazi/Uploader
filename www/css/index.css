@@ -1,0 +1,48 @@
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+.theme-dropdown .dropdown-menu {
+  position: static;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+  margin: 5px 0;
+}
+
+.theme-showcase .navbar .container {
+  width: auto;
+}
+
+.main-heading {
+    padding-bottom: 9px !important;
+    margin: -65px 0 30px !important;
+    border-bottom: 3px solid #333 !important;
+}
+
+.crop-buttons {
+    margin-left: 0px !important;
+    margin-top: 20px;
+}
+
+.crop-view {
+    margin-top: 30px;
+}
+.crop-help-text {
+    text-align: center;
+}
+
+.image-row {
+    margin-bottom: 28px !important;
+}
+
+#save-cropped-area {
+    margin-right: 5px;
+}
+
+#canvas-image {
+    visibility: hidden;
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Uploader</title>
+</head>
+<body role="document">
+
+<div class="container">
+    <div class="main-heading page-header">
+        <h1>Upload Images
+            <small>Easy upload to AWS S3</small>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <form class="image-form">
+                <div class="form-group">
+                    <label for="image-file">Select an image</label>
+                    <input type="file" id="image-file" multiple>
+
+                    <p class="help-block">Original image size must be at least 1024 x 1024</p>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg upload">
+                    <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span></button>
+            </form>
+            <br/>
+
+            <div class="alert alert-danger hidden warning-message-fail" role="alert">
+                <strong>Oh snap!</strong> Upload failed!.
+            </div>
+            <div class="alert alert-danger hidden warning-message" role="alert">
+                <strong>Oh snap!</strong> Image dimensions incorrect!.
+            </div>
+            <div class="alert alert-success success-message hidden" role="alert">
+                <strong>Uploaded!</strong> File uploaded to cloud server.
+            </div>
+            <p>
+                Select an image to crop and then download the cropped versions. Choose those files from system and then
+                hit upload.
+            </p>
+        </div>
+        <div class="col-md-8">
+            <b>Preview Pane</b>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <img id="main-image" src="http://placehold.it/1024x1024/2ecc71/fff" alt=""
+                         class="img-responsive crop-image center-block">
+
+                    <p class="help-block">Original Image</p>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row image-row">
+                        <div class="col-sm-6">
+                            <img id="horizontal" src="http://placehold.it/400/3498db/fff?text=Horizontal" alt=""
+                                 class="crop-image img-responsive">
+                        </div>
+                        <div class="col-sm-6">
+                            <img id="vertical" src="http://placehold.it/400/e74c3c/fff?text=Vertical" alt=""
+                                 class="crop-image img-responsive">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <img id="hsmall" src="http://placehold.it/400/f1c40f/fff?text=H.Small" alt=""
+                                 class="crop-image img-responsive">
+                        </div>
+                        <div class="col-sm-6">
+                            <img id="gallery" src="http://placehold.it/400/9b59b6/fff?text=Gallery" alt=""
+                                 class="crop-image img-responsive">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="crop-buttons row">
+                <button type="button" data-id="horizontal" class="btn btn-info crop-image">Crop Horizontal</button>
+                <button type="button" data-id="vertical" class="btn btn-info crop-image">Crop Vertical</button>
+                <button type="button" data-id="hsmall" class="btn btn-info crop-image">Crop Hor. Small</button>
+                <button type="button" data-id="gallery" class="btn btn-info crop-image">Crop Gallery</button>
+            </div>
+        </div>
+    </div>
+    <div class="row crop-view">
+        <p class="help-block crop-help-text">Crop hit save. Click on file to download the cropped file and then hit
+            upload to upload all</p>
+        <a class="btn btn-default pull-right" href="#" id="download-file" role="button">File</a>
+        <button type="button" id="save-cropped-area" class="pull-right btn btn-success crop-image">Save</button>
+        <img id="crop-preview" src="http://placehold.it/1024x1024/2ecc71/fff" alt="" class="crop-image center-block">
+        <canvas id="canvas-image"></canvas>
+    </div>
+</div>
+
+<!--main style sheet-->
+<link rel="stylesheet" type="text/css" href="css/jquery.Jcrop.min.css"/>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+<!--bootstrap cdn-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+      integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<!--bootstrap theme-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+      integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+<!--jquery cdn-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<!--bootstrap javascript-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+<!--AWS sdk-->
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.2.36.min.js"></script>
+
+<!--main js file-->
+<script type="text/javascript" src="libraries/jquery.color.js"></script>
+<script type="text/javascript" src="libraries/jquery.Jcrop.min.js"></script>
+<script type="text/javascript" src="js/browserInfo.js"></script>
+<script type="text/javascript" src="js/awsOperations.js"></script>
+<script type="text/javascript" src="js/awsOperations.js"></script>
+<script type="text/javascript" src="js/fileOperations.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>
